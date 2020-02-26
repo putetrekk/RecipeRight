@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,11 @@ namespace RecipeRight.Database.Models
 {
     public class Recipe
     {
-        public Guid Id;
+        [Key]
+        public Guid Id { get; set; }
 
-        public List<IngredientWithAmount> IngredientsWithAmounts;
+        public string Name { get; set; }
 
-        public List<Step> Steps;
+        public List<Step> Steps { get; set; }
     }
 }

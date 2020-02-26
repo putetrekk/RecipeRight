@@ -1,7 +1,20 @@
-﻿namespace RecipeRight.Database.Models
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace RecipeRight.Database.Models
 {
     public class Step
     {
-        public string Description;
+        [Key]
+        public Guid Id { get; set; }
+
+        public string Action { get; set; }
+
+        public List<IngredientWithAmount> IngredientsWithAmounts { get; set; }
+
+        public Step Substep { get; set; }
+
+        public Ingredient Result { get; set; }
     }
 }

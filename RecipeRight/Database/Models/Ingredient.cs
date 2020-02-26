@@ -1,11 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeRight.Database.Models
 {
     public class Ingredient
     {
-        public Guid Id;
+        [Key]
+        public Guid Id { get; set; }
 
-        public String Name;
+        public String Name { get; set; }
     }
 }
