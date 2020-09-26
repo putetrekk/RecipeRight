@@ -27,7 +27,7 @@ else
             {
                 <tr>
                     <td>@recipe.Name</td>
-                    <td>@recipe.Steps.Count()</td>
+                    <td>@(recipe.Steps != null ? recipe.Steps.Count : 0)</td>
                 </tr>
             }
         </tbody>

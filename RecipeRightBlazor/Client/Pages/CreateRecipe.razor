@@ -1,0 +1,35 @@
+@page "/createrecipe"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using RecipeRightBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Create Recipe</h1>
+
+<p>Fill the fields below and submit your delicious recipe.</p>
+
+<EditForm Model="@recipe" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="recipe.Name"/>
+    
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private Recipe recipe = new Recipe();
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            await Http.PostAsJsonAsync("recipe", recipe);
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+}

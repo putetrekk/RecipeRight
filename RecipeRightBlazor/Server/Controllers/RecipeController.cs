@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,15 @@ namespace RecipeRightBlazor.Server.Controllers
         public async Task<IEnumerable<Recipe>> Get()
         {
             return await db.Recipes.ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task Post(Recipe recipe)
+        {
+            recipe.Id = Guid.NewGuid();
+            db.Recipes.Add(recipe);
+
+            await db.SaveChangesAsync();
         }
     }
 }
