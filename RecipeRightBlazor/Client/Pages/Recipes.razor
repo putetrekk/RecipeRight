@@ -1,0 +1,52 @@
+@page "/recipes"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using RecipeRightBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Recipes</h1>
+
+<p>This is a list of all my valuable recipes.</p>
+
+@if (recipes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Steps</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recipe in recipes)
+            {
+                <tr>
+                    <td>@recipe.Name</td>
+                    <td>@recipe.Steps.Count()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Recipe[] recipes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            recipes = await Http.GetFromJsonAsync<Recipe[]>("Recipe");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+}
