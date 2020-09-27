@@ -12,20 +12,50 @@
 <EditForm Model="@recipe" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
-    <InputText id="name" @bind-Value="recipe.Name"/>
-    
+    <div>
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="recipe.Name" />
+    </div>
+    <div>
+        @for(int i = 0; i < recipe.Steps.Count; i++)
+        {
+            <StepEditor Step="@recipe.Steps[i]" Index="@(i+1)" />
+        }
+    </div>
+    <div>
+        <a class="btn" @onclick="@AddStep">Add step</a>
+    </div>
     <button type="submit">Submit</button>
 </EditForm>
 
 @code {
-    private Recipe recipe = new Recipe();
+    private Recipe recipe = new Recipe
+    {
+        Steps = new List<Step>
+        {
+            new Step
+            {
+                Id = Guid.NewGuid(),
+                IngredientsWithAmounts = new List<IngredientWithAmount>(),
+            },
+        }
+    };
+
+    private void AddStep()
+    {
+        var step = new Step
+        {
+            Id = Guid.NewGuid(),
+            IngredientsWithAmounts = new List<IngredientWithAmount>()
+        };
+        recipe.Steps.Add(step);
+    }
 
     private async Task HandleValidSubmit()
     {
         try
         {
-            await Http.PostAsJsonAsync("recipe", recipe);
+            await Http.PostAsJsonAsync("Recipe", recipe);
         }
         catch (AccessTokenNotAvailableException exception)
         {

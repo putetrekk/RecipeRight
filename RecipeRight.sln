@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeRight", "RecipeRight\RecipeRight.csproj", "{04318808-0213-445F-99F7-17D0BAD53C1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeRightBlazor.Server", "RecipeRightBlazor\Server\RecipeRightBlazor.Server.csproj", "{CD1D0039-2478-453C-AAAF-5867121A3C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeRightBlazor.Server", "RecipeRightBlazor\Server\RecipeRightBlazor.Server.csproj", "{CD1D0039-2478-453C-AAAF-5867121A3C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeRightBlazor.Client", "RecipeRightBlazor\Client\RecipeRightBlazor.Client.csproj", "{252CB0CA-6B66-40B1-A50B-8C31DCC8B99C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeRightBlazor.Client", "RecipeRightBlazor\Client\RecipeRightBlazor.Client.csproj", "{252CB0CA-6B66-40B1-A50B-8C31DCC8B99C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeRightBlazor.Shared", "RecipeRightBlazor\Shared\RecipeRightBlazor.Shared.csproj", "{1E9E1674-40AF-4214-B209-3BC7E9EF4A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeRightBlazor.Shared", "RecipeRightBlazor\Shared\RecipeRightBlazor.Shared.csproj", "{1E9E1674-40AF-4214-B209-3BC7E9EF4A12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

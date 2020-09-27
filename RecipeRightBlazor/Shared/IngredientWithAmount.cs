@@ -8,6 +8,8 @@ namespace RecipeRightBlazor.Shared
         [Key]
         public Guid Id { get; set; }
 
+        [Required]
+        public Guid IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }
 
         public float Quantity { get; set; }

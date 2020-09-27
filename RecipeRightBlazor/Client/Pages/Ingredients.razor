@@ -1,0 +1,74 @@
+@page "/ingredients"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using RecipeRightBlazor.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+
+<h1>Ingredients</h1>
+
+<h2>Add an ingredient</h2>
+<EditForm Model="@ingredient" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="ingredient.Name" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<h2>Existing Ingredients</h2>
+@if (ingredients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ingredient in ingredients)
+            {
+                <tr>
+                    <td>@ingredient.Id</td>
+                    <td>@ingredient.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Ingredient[] ingredients;
+    private Ingredient ingredient = new Ingredient();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            ingredients = await Http.GetFromJsonAsync<Ingredient[]>("Ingredient");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            await Http.PostAsJsonAsync("Ingredient", ingredient);
+            ingredients = await Http.GetFromJsonAsync<Ingredient[]>("Ingredient");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+}
