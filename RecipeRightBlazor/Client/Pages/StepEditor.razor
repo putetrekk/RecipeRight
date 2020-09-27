@@ -10,22 +10,7 @@
     }
 </div>
 <div>
-    @if (ingredients == null)
-    {
-        <p><em>Loading...</em></p>
-    }
-    else
-    {
-        <label for="ingredientToAddId">Add step ingredient</label>
-        <InputSelect @bind-Value="@ingredientToAddId" id="ingredientToAddId">
-            <option value="">Choose ingredient...</option>
-            @foreach (Ingredient ingredient in ingredients)
-                {
-                <option value="@ingredient.Id">@ingredient.Name</option>
-                }
-        </InputSelect>
-        <a class="btn" @onclick="@AddIngredientToStep">Add step ingredient</a>
-    }
+    <a class="btn" @onclick="@AddIngredientToStep">Add step ingredient</a>
 </div>
 <div>
     <label for="@($"action-{Step.Id}")">Action</label>
@@ -43,16 +28,11 @@
 
     private Ingredient[] ingredients;
 
-    private string ingredientToAddId;
-
     private void AddIngredientToStep()
     {
-        Console.WriteLine("trying to add iwa");
-        var ingredient = ingredients.First(i => i.Id == Guid.Parse(ingredientToAddId));
         var ingredientWithAmount = new IngredientWithAmount
         {
             Id = Guid.NewGuid(),
-            Ingredient = ingredient,
         };
         Step.IngredientsWithAmounts.Add(ingredientWithAmount);
     }
