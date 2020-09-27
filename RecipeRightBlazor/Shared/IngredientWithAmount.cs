@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeRightBlazor.Shared
 {
@@ -8,6 +7,7 @@ namespace RecipeRightBlazor.Shared
     {
         [Key]
         public Guid Id { get; set; }
+
         public Ingredient Ingredient { get; set; }
 
         public float Quantity { get; set; }

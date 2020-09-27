@@ -12,9 +12,5 @@ namespace RecipeRightBlazor.Shared
         public string Action { get; set; }
 
         public List<IngredientWithAmount> IngredientsWithAmounts { get; set; }
-
-        public Step Substep { get; set; }
-
-        public Ingredient Result { get; set; }
     }
 }
