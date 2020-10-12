@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import '@fortawesome/fontawesome-free/css/all.css';
+
 // Import Bulma with our theme
 import './assets/theme.scss';
 

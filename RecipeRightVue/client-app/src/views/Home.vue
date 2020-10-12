@@ -22,11 +22,33 @@
         <div class="columns">
           <div class="column is-8-desktop is-offset-2-desktop">
             <div class="content">
+              <div class="level">
+                <div class="level-left">
+                  <h2>Recipes</h2>
+                </div>
+                <div class="level-right">
+                  <router-link
+                    class="button is-text"
+                    :to="{ name: 'Create Recipe' }"
+                    >Create recipe</router-link
+                  >
+                </div>
+              </div>
               <div class="level" v-for="recipe in recipes" :key="recipe.Id">
                 <div class="level-left">
-                  <div class="level-item">{{ recipe.Name }}</div>
+                  <div class="level-item is-size-4">{{ recipe.name }}</div>
+                  <p class="level-item">
+                    Steps: {{ recipe.steps !== null ? recipe.steps.length : 0 }}
+                  </p>
                 </div>
                 <div class="level-right"></div>
+              </div>
+              <div class="level" v-if="recipes.length == 0">
+                <div class="level-left">
+                  <div class="level-item">
+                    Oh no! We're all out of recipes...
+                  </div>
+                </div>
               </div>
             </div>
           </div>
